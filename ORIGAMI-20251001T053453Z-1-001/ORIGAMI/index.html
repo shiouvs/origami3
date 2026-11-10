@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Origami Box Simulator | Professional Paper Folding Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="mesh-gradient"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📐</span>
+                <span class="logo-text">Origami<span class="logo-accent">3D</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Simulator</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="main-content">
+            <div class="canvas-container">
+                <div class="canvas-header">
+                    <div class="canvas-title">
+                        <span class="canvas-icon">🎨</span>
+                        <span>3D Viewport</span>
+                    </div>
+                    <div class="canvas-tools">
+                        <button class="tool-btn" title="Screenshot">📷</button>
+                        <button class="tool-btn" title="Fullscreen">⛶</button>
+                        <button class="tool-btn" title="Settings">⚙️</button>
+                    </div>
+                </div>
+                <canvas id="origamiCanvas"></canvas>
+                <div class="canvas-overlay">
+                    <div class="overlay-info">
+                        <span class="info-badge">WebGL 2.0</span>
+                        <span class="info-badge">60 FPS</span>
+                    </div>
+                </div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Initializing 3D Environment...</p>
+                    <div class="loading-progress">
+                        <div class="loading-bar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="panel-header">
+                    <h2>Control Center</h2>
+                    <span class="panel-badge">W.I.P</span>
+                </div>
+
+                <div class="control-section">
+                    <h3><span class="section-icon">▶️</span> Animation Controls</h3>
+                    <div class="button-group">
+                        <button id="playBtn" class="btn btn-primary">
+                            <span class="icon">▶</span> Play
+                        </button>
+                        <button id="pauseBtn" class="btn btn-secondary">
+                            <span class="icon">⏸</span> Pause
+                        </button>
+                        <button id="resetBtn" class="btn btn-secondary">
+                            <span class="icon">↻</span> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3><span class="section-icon">⚡</span> Speed Control</h3>
+                    <div class="slider-container">
+                        <label for="speedSlider">Animation Speed</label>
+                        <input type="range" id="speedSlider" min="0.5" max="3" step="0.1" value="1">
+                        <span id="speedValue">1.0x</span>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3><span class="section-icon">👁️</span> View Controls</h3>
+                    <div class="button-group">
+                        <button id="rotateBtn" class="btn btn-tertiary">
+                            <span class="icon">🔄</span> Auto-Rotate
+                        </button>
+                        <button id="resetViewBtn" class="btn btn-tertiary">
+                            <span class="icon">👁</span> Reset View
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3><span class="section-icon">📊</span> Current Step</h3>
+                    <div class="step-info">
+                        <div class="step-number" id="stepNumber">0 / 6</div>
+                        <div class="step-description" id="stepDescription">Ready to begin folding</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="control-section info-section">
+                    <h3><span class="section-icon">ℹ️</span> About This Simulation</h3>
+                    <p>This simulation demonstrates a simple origami box with realistic paper physics and folding mechanics powered by advanced computational geometry.</p>
+                    <ul>
+                        <li><span class="feature-icon">✓</span> Realistic paper material simulation</li>
+                        <li><span class="feature-icon">✓</span> Smooth crease animations</li>
+                        <li><span class="feature-icon">✓</span> Interactive 3D viewing</li>
+                        <li><span class="feature-icon">✓</span> Step-by-step folding sequence</li>
+                        <li><span class="feature-icon">✓</span> Real-time physics engine</li>
+                        <li><span class="feature-icon">✓</span> Export to 3D formats</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Controls</h4>
+                    <p>🖱️ Mouse to rotate • 🔍 Scroll to zoom • ✋ Drag to pan</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Keyboard Shortcuts</h4>
+                    <p>Space: Play/Pause • R: Reset • F: Fullscreen</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Performance</h4>
+                    <p><span class="status-indicator"></span> System Running Optimally</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 OrigamiPro. Powered by WebGL & Three.js</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="origami-simulation.js"></script>
+</html>
